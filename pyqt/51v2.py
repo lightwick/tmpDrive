@@ -6,7 +6,7 @@ from PyQt5.QtCore import Qt, QRect, QTimer
 import sys
 import random
 
-GRID_SIZE = 10
+GRID_SIZE = 1
 class myWidget(QWidget):
     class character:
         def __init__(self, parent, row, col, SpriteSheetPath, TimeInterval=50):
@@ -63,27 +63,51 @@ class myWidget(QWidget):
             self.frame_y = 0
             self.CharX = 0
             self.CharY=0
-            self.count = 0
-        
-        def keyPressEvent(self, event):
-            if event.key()==Qt.Key_Right:
-                self.frame_y = self.yDist*7
-                self.CharX += GRID_SIZE
-            elif event.key()==Qt.Key_Left:
-                self.frame_y = self.yDist*5
-                self.CharX -= GRID_SIZE
-            elif event.key()==Qt.Key_Up:
-                self.frame_y = self.yDist * 6
-                self.CharY-= GRID_SIZE
-            elif event.key()==Qt.Key_Down:
-                self.frame_y = self.yDist * 4
-                self.CharY+= GRID_SIZE
             
-            self.CharSetNextFrame()
-        
+            self.pressedKey = None
+            
+            self.walkTimer=QTimer(self.parent)
+            self.walkTimer.setInterval(20)
+            self.walkTimer.timeout.connect(self.checkInput)
+            self.walkTimer.start()
+            
+        def done(self): # just a place holder for now
+            print("done")
+            
+        def checkInput(self):
+            if self.pressedKey != None:
+                if self.pressedKey=="right":
+                    self.frame_y = self.yDist*7
+                    self.CharX += GRID_SIZE
+                elif self.pressedKey=="left":
+                    self.frame_y = self.yDist*5
+                    self.CharX += -GRID_SIZE
+                elif self.pressedKey=="up":
+                    self.frame_y = self.yDist * 6
+                    self.CharY += -GRID_SIZE
+                elif self.pressedKey=="down":
+                    self.frame_y = self.yDist * 4
+                    self.CharY += GRID_SIZE
+                self.CharSetNextFrame()
+            self.parent.update()
+                
+        def keyPressEvent(self, event):
+            
+            if event.key()==Qt.Key_Right:
+                self.pressedKey="right"
+            elif event.key()==Qt.Key_Left:
+                self.pressedKey="left"
+            elif event.key()==Qt.Key_Up:
+                self.pressedKey="up"
+            elif event.key()==Qt.Key_Down:
+                self.pressedKey="down"
+            
+            #self.walkTimer.start()
+            
         def keyReleaseEvent(self, event):
+            #self.walkTimer.stop()
             if not event.isAutoRepeat():
-                print("released")
+                self.pressedKey = None
                 self.frame_x = 0
                 if self.frame_y >= self.yDist*4:
                     self.frame_y -= self.yDist*4
