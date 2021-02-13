@@ -1,0 +1,14 @@
+'''
+void	drawPixmap(const QRectF &target, const QPixmap &pixmap, const QRectF &source)
+void	drawPixmap(const QRect &target, const QPixmap &pixmap, const QRect &source)
+void	drawPixmap(int x, int y, int w, int h, const QPixmap &pixmap, int sx, int sy, int sw, int sh)
+void	drawPixmap(int x, int y, const QPixmap &pixmap, int sx, int sy, int sw, int sh)
+void	drawPixmap(const QPointF &point, const QPixmap &pixmap, const QRectF &source)
+void	drawPixmap(const QPoint &point, const QPixmap &pixmap, const QRect &source)
+void	drawPixmap(const QPointF &point, const QPixmap &pixmap)
+void	drawPixmap(const QPoint &point, const QPixmap &pixmap)
+void	drawPixmap(int x, int y, const QPixmap &pixmap)
+void	drawPixmap(const QRect &rectangle, const QPixmap &pixmap)
+void	drawPixmap(int x, int y, int width, int height, const QPixmap &pixmap)
+void	drawPixmapFragments(const QPainter::PixmapFragment *fragments, int fragmentCount, const QPixmap &pixmap, QPainter::PixmapFragmentHints hints = PixmapFragmentHints())
+'''
