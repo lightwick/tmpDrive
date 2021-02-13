@@ -66,6 +66,8 @@ class MainCharacter(character):
         self.walkTimer.timeout.connect(self.checkInput)
         self.walkTimer.start()
         
+        self.position = "down"
+        
     def done(self): # just a place holder for now
         print("done")
         
@@ -75,15 +77,19 @@ class MainCharacter(character):
     def checkInput(self):
         if self.pressedKey != None:
             if self.pressedKey=="right":
+                self.position="right"
                 self.frame_y = self.yDist*7
                 self.CharX += STEP_SIZE
             elif self.pressedKey=="left":
+                self.position="left"
                 self.frame_y = self.yDist*5
                 self.CharX += -STEP_SIZE
             elif self.pressedKey=="up":
+                self.position="up"
                 self.frame_y = self.yDist * 6
                 self.CharY += -STEP_SIZE
             elif self.pressedKey=="down":
+                self.position="down"
                 self.frame_y = self.yDist * 4
                 self.CharY += STEP_SIZE
             self.CharSetNextFrame()

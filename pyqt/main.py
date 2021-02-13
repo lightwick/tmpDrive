@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import Qt, QRect, QTimer
 from background import background
 from character import *
+from attacks import *
 
 import sys
 import random
@@ -15,6 +16,7 @@ class myWidget(QWidget):
         self.initUI()
         self.initBackground()
         self.show()
+        self.attack=[]
         
     def initBackground(self):
         bgPath="./img/maze.png"
@@ -36,8 +38,13 @@ class myWidget(QWidget):
         self.background.draw(painter)
         self.link.draw(painter)
         self.monster.draw(painter)
-    
+        for i in self.attack:
+            i.draw(painter)
+            
     def keyPressEvent(self, event):
+        if event.key()==Qt.Key_Control:
+            _attack = attackParticle(self, self.link)
+            self.attack.append(_attack)
         self.link.keyPressEvent(event)
         self.update()
     
