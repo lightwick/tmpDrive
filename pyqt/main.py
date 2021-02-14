@@ -22,10 +22,12 @@ class myWidget(QWidget):
         bgPath="./img/maze.png"
         tmp = QPixmap(bgPath)
         self.background = background(self, bgPath, tmp.width()/2, tmp.height()/2, 1/13)
+        attackParticle.background = self.background
         
     def initUI(self):
         self.setWindowTitle("walking animation test")
         self.setFixedSize(1500, 900)
+        
     
     def initCharacter(self):
         # machine = QtCore.QStateMachine()
