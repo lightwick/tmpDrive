@@ -25,4 +25,4 @@ if __name__=="__main__":
     
     img = Image.new("RGB", (row*height, col*width))
     img.putdata(data)
-    img.save("./output/tile.bmp")
+    img.save("./output/tile.png")
