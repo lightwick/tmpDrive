@@ -12,16 +12,16 @@ import random
 class myWidget(QWidget):
     def __init__(self):
         super(myWidget,self).__init__()
+        self.attack=[]
         self.initCharacter()
         self.initUI()
         self.initBackground()
         self.show()
-        self.attack=[]
         
     def initBackground(self):
-        bgPath="./img/maze.png"
+        bgPath="./img/tile.png"
         tmp = QPixmap(bgPath)
-        self.background = background(self, bgPath, tmp.width()/2, tmp.height()/2, 1/13)
+        self.background = background(self, bgPath, tmp.width()/2, tmp.height()/2, 1/3)
         attackParticle.background = self.background
         
     def initUI(self):

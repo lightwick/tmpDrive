@@ -2,8 +2,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QPainter, QPixmap
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import Qt, QRect, QTimer
-from main import STEP_SIZE
-from character import character
+from character import character, STEP_SIZE
 
 class attackParticle:
     main = None
